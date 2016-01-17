@@ -29,21 +29,22 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'core.Author'
 
-LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/author/'
 
 # Application definition
 
 INSTALLED_APPS = (
+    'core.apps.CoreConfig',
+    'backend.apps.BackendConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'backend',
 )
 
 MIDDLEWARE_CLASSES = (
