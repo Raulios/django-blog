@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="author" content="Raúl Molina" />
+
+    {% block metatags %}
+        <meta name="keywords" content="">
+		<meta name="description" content="">
+        <meta name="twitter:site" content="">
+        <meta name="twitter:creator" content="">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:image" content="">
+        <meta property="og:url" content="" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="" />
+    {% endblock %}
+
+	<link rel="shortcut icon" href="">
+
+	{% block title %}
+		<title>Django Blog</title>
+    {% endblock %}
+
+     <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template base -->
+    <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- LOAD GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    {% block content %}
+
+    {% endblock %}
+</body>
+
+{% include "blog/scripts.html" %}
+
+</html>
