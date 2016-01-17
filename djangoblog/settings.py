@@ -31,7 +31,7 @@ AUTH_USER_MODEL = 'core.Author'
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/author/'
+LOGIN_REDIRECT_URL = '/user-panel/'
 
 # Application definition
 

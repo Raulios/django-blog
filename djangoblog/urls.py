@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^logout/', logout_then_login, {'login_url': '/login'}, name='logout'),
 
     url(r'^$', include('blog.urls')),
-    url(r'^author/', include('backend.urls')),
+    url(r'^user-panel/', include('backend.urls')),
 
 
 
