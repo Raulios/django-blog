@@ -18,15 +18,13 @@ from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login
 urlpatterns = [
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 
     url(r'^login/', login, name='login'),
     url(r'^logout/', logout_then_login, {'login_url': '/login'}, name='logout'),
 
     url(r'^$', include('blog.urls')),
     url(r'^user-panel/', include('backend.urls')),
-
-
 
 ]
 

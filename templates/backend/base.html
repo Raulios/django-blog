@@ -46,9 +46,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if user.is_authenticated %}
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Vista General</a></li>
+                        <li class="active"><a href="{% url 'user_panel_index' %}">Vista General</a></li>
+                        <li class=""><a href="{% url 'user_panel_posts' %}">Posts</a></li>
                         <li class=""><a href="#">Categorias</a></li>
-                        <li class=""><a href="#">Posts</a></li>
+                        <li class=""><a href="#">Tags</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><i class="fa fa-user"></i> {{ user.first_name }} {{ user.last_name }}</a></li>
@@ -57,13 +58,11 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            {% block content %}
 
-            {% endblock %}
-        </div>
-    </div>
+    {% block content %}
+
+    {% endblock %}
+
 </body>
 
 {% include "backend/scripts.html" %}
