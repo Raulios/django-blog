@@ -2,5 +2,7 @@
  * Created by raulmolinasanchez on 17/1/16.
  */
 tinymce.init({
-   selector: "#id_body"
+   selector: "#id_body",
+    menubar: false,
+    height: 200
 });

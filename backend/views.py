@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
 from core.models import Post
+from backend.forms import PostForm
 
 # Create your views here.
 @login_required()
@@ -41,7 +42,17 @@ def edit_post(request, post_id):
     context['nav_active'] = 'posts'
 
     post = Post.objects.get(pk=post_id)
-
     context['post'] = post
+
+    form = PostForm(instance=post)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+
+        if form.is_valid():
+            form.save()
+            context['saved'] = True
+
+    context['form'] = form
 
     return render(request, 'backend/edit_post.html', context)

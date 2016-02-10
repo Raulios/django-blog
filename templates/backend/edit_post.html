@@ -1,5 +1,6 @@
 {% extends 'backend/base.html' %}
 {% load staticfiles %}
+{% load widget_tweaks %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -14,22 +15,52 @@
                 </ol>
                 <form action="" method="post" role="form">
                     <div class="form-group">
-                        <label for="id_title">Title</label>
+                        <label for="id_title">{{ form.title.label }}</label>
                         <div class="controls">
-                            <input class="form-control" id="id_title" name="title" type="text" />
+                            {{ form.title|add_class:"form-control" }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="id_summary">Summary</label>
+                        <label for="id_summary">{{ form.summary.label }}</label>
                         <div class="controls">
-                            <input class="form-control" id="id_summary" name="summary" type="text" />
+                            {{ form.summary|add_class:"form-control" }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="id_body">Body</label>
+                        <label for="id_body">{{ form.body.label }}</label>
                         <div class="controls">
-                            <textarea class="form-control" id="id_body" name="body">
-                            </textarea>
+                            {{ form.body }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.main_image.label }}</label>
+                        <div class="controls">
+                            {{ form.main_image }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.publish.label }}</label>
+                        <div class="controls">
+                            {{ form.publish }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.categories.label }}</label>
+                        <div class="controls">
+                            {{ form.categories|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <div class="controls">
+                            {{ form.tags|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-default">
+                                Save
+                            </button>
                         </div>
                     </div>
                 </form>
