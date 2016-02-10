@@ -44,4 +44,4 @@ def edit_post(request, post_id):
 
     context['post'] = post
 
-    return render(request, 'backend/index.html', context)
+    return render(request, 'backend/edit_post.html', context)

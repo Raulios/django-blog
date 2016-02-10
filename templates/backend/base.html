@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if user.is_authenticated %}
                     <ul class="nav navbar-nav">
-                        <li {% if nav_active == 'index' %}class="active"{% endif %}><a href="{% url 'user_panel_index' %}">Vista General</a></li>
+                        <li {% if nav_active == 'index' %}class="active"{% endif %}><a href="{% url 'user_panel_index' %}">General Overview</a></li>
                         <li {% if nav_active == 'posts' %}class="active"{% endif %}><a href="{% url 'user_panel_posts' %}">Posts</a></li>
                         <li {% if nav_active == 'categories' %}class="active"{% endif %}><a href="#">Categorias</a></li>
                         <li {% if nav_active == 'tags' %}class="active"{% endif %}><a href="#">Tags</a></li>
