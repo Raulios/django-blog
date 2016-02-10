@@ -13,9 +13,12 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login
+
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
@@ -26,5 +29,5 @@ urlpatterns = [
     url(r'^$', include('blog.urls')),
     url(r'^user-panel/', include('backend.urls')),
 
-]
+] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

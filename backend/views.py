@@ -47,7 +47,7 @@ def edit_post(request, post_id):
     form = PostForm(instance=post)
 
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
 
         if form.is_valid():
             form.save()

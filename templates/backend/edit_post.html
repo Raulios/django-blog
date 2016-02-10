@@ -13,7 +13,8 @@
                   <li><a href="{% url 'user_panel_posts' %}">Posts</a></li>
                   <li class="active">Edit Post</li>
                 </ol>
-                <form action="" method="post" role="form">
+                <form action="." method="post" role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="id_title">{{ form.title.label }}</label>
                         <div class="controls">
