@@ -8,6 +8,7 @@ from core.models import Post
 @login_required()
 def index(request):
     context = {}
+    context['nav_active'] = 'index'
 
     print 'hey'
     return render(request, 'backend/index.html', context)
@@ -15,8 +16,8 @@ def index(request):
 @login_required()
 def posts(request):
     context = {}
+    context['nav_active'] = 'posts'
 
-    print 'hay'
     post_list = Post.objects.all()
 
     paginator = Paginator(list(reversed(post_list)), 10)
@@ -37,6 +38,7 @@ def posts(request):
 @login_required()
 def edit_post(request, post_id):
     context = {}
+    context['nav_active'] = 'posts'
 
     post = Post.objects.get(pk=post_id)
 
