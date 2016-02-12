@@ -12,7 +12,6 @@ class PostAdmin(admin.ModelAdmin):
     '''
 
     list_display = ('id', 'title', 'created_at', 'updated_at')
-    exclude = ('slug',)
     list_display_links = ('id',)
     search_fields = ('title', 'categories', 'tags', 'created_at', 'updated_at')
 
