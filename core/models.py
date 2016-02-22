@@ -127,7 +127,7 @@ class Post(models.Model):
 
     slug = models.SlugField(max_length=250, blank=True, null=True, unique=True)
 
-    body = models.TextField()
+    body = models.TextField(blank=False, null=False)
 
     main_image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
 

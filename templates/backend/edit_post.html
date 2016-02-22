@@ -15,47 +15,62 @@
                 </ol>
                 <form action="." method="post" role="form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_title">{{ form.title.label }}</label>
+                    <div class="form-group {% if form.title.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
                         <div class="controls">
                             {{ form.title|add_class:"form-control" }}
                         </div>
+                        {% for error in form.title.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
-                        <label for="id_summary">{{ form.summary.label }}</label>
+                    <div class="form-group {% if form.summary.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label>
                         <div class="controls">
                             {{ form.summary|add_class:"form-control" }}
                         </div>
+                        {% for error in form.summary.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
-                        <label for="id_body">{{ form.body.label }}</label>
+                    <div class="form-group {% if form.body.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
                         <div class="controls">
                             {{ form.body }}
                         </div>
+                        {% for error in form.body.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
                     </div>
                     <div class="form-group">
-                        <label>{{ form.main_image.label }}</label>
+                        {{ form.main_image.label_tag }}
                         <div class="controls">
                             {{ form.main_image }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>{{ form.publish.label }}</label>
+                        {{ form.publish.label_tag }}
                         <div class="controls">
                             {{ form.publish }}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>{{ form.categories.label }}</label>
+                    <div class="form-group {% if form.categories.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{ form.categories.id_for_label }}">{{ form.categories.label }}</label>
                         <div class="controls">
                             {{ form.categories|add_class:"form-control" }}
                         </div>
+                        {% for error in form.categories.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
-                        <label>Tags</label>
+                    <div class="form-group {% if form.tags.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{ form.tags.id_for_label }}">{{ form.tags.label }}</label>
                         <div class="controls">
                             {{ form.tags|add_class:"form-control" }}
                         </div>
+                        {% for error in form.tags.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
                     </div>
                     <div class="form-group">
                         <div class="controls">
