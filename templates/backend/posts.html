@@ -15,7 +15,7 @@
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}" role="alert">
-                            Post updated successfully!
+                            {{ message }}
                         </div>
                     {% endfor %}
                 {% endif %}
@@ -41,7 +41,7 @@
                             <td>{{ post.updated_at }}</td>
                             <td>
                                 <a href="{% url 'user_panel_edit_post' post_id=post.pk %}" class="btn btn-default">Edit</a>
-                                <a href="#" class="btn btn-default">Delete</a>
+                                <a href="{% url 'user_panel_delete_post' post_id=post.pk %}" class="btn btn-default">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}

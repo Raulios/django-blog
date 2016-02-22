@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -46,13 +47,14 @@ def add_post(request):
     form = PostForm()
 
     if request.method == 'POST':
+        print 'hey'
         form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
             messages.success(request, 'Post created.')
 
-            return HttpResponseRedirect('/user-panel/posts')
+            return HttpResponseRedirect(reverse('user_panel_posts'))
 
     context['form'] = form
 
@@ -75,8 +77,20 @@ def edit_post(request, post_id):
             form.save()
             messages.success(request, 'Post updated.')
 
-            return HttpResponseRedirect('/user-panel/posts')
+            return HttpResponseRedirect(reverse('user_panel_posts'))
 
     context['form'] = form
 
     return render(request, 'backend/edit_post.html', context)
+
+@login_required()
+def delete_post(request, post_id):
+    context = {}
+    context['nav_active'] = 'posts'
+
+    post = Post.objects.get(pk=post_id)
+    post.delete()
+
+    messages.success(request, 'Post deleted.')
+
+    return HttpResponseRedirect(reverse('user_panel_posts'))
