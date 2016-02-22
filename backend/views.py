@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from core.models import Post
-from backend.forms import PostForm
+from core.models import Post, Category
+from backend.forms import PostForm, CategoryForm
 
 # Create your views here.
 @login_required()
@@ -94,3 +94,80 @@ def delete_post(request, post_id):
     messages.success(request, 'Post deleted.')
 
     return HttpResponseRedirect(reverse('user_panel_posts'))
+
+@login_required()
+def categories(request):
+    context = {}
+    context['nav_active'] = 'categories'
+
+    categories_list = Category.objects.all()
+
+    paginator = Paginator(list(reversed(categories_list)), 10)
+
+    page = request.GET.get('page')
+
+    try:
+        categories = paginator.page(page)
+    except PageNotAnInteger:
+        categories = paginator.page(1)
+    except EmptyPage:
+        categories = paginator.page(paginator.num_pages)
+
+    context['categories'] = categories
+    return render(request, 'backend/categories.html', context)
+
+@login_required()
+def add_category(request):
+    context = {}
+    context['nav_active'] = 'categories'
+
+    form = CategoryForm()
+
+    if request.method == 'POST':
+        print 'hey'
+        form = CategoryForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category created.')
+
+            return HttpResponseRedirect(reverse('user_panel_categories'))
+
+    context['form'] = form
+
+    return render(request, 'backend/edit_category.html', context)
+
+@login_required()
+def edit_category(request, category_id):
+    context = {}
+    context['nav_active'] = 'categories'
+
+    category = Category.objects.get(pk=category_id)
+    context['category'] = category
+
+    form = CategoryForm(instance=category)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category updated.')
+
+            return HttpResponseRedirect(reverse('user_panel_categories'))
+
+    context['form'] = form
+
+    return render(request, 'backend/edit_category.html', context)
+
+@login_required()
+def delete_category(request, category_id):
+    context = {}
+    context['nav_active'] = 'categories'
+
+    category = Category.objects.get(pk=category_id)
+    category.delete()
+
+    messages.success(request, 'Category deleted.')
+
+    return HttpResponseRedirect(reverse('user_panel_categories'))
