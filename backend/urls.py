@@ -15,4 +15,9 @@ urlpatterns = [
     url(r'^categories/(?P<category_id>[0-9]+)/$', views.edit_category, name='user_panel_edit_category'),
     url(r'^delete_category/(?P<category_id>[0-9]+)/$', views.delete_category, name='user_panel_delete_category'),
     url(r'^add_category/$', views.add_category, name='user_panel_add_category'),
+
+    url(r'^tags/$', views.tags, name='user_panel_tags'),
+    url(r'^tags/(?P<tag_id>[0-9]+)/$', views.edit_tag, name='user_panel_edit_tag'),
+    url(r'^delete_tag/(?P<tag_id>[0-9]+)/$', views.delete_tag, name='user_panel_delete_tag'),
+    url(r'^add_tag/$', views.add_tag, name='user_panel_add_tag'),
 ]

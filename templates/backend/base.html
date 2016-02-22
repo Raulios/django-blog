@@ -49,7 +49,7 @@
                         <li {% if nav_active == 'index' %}class="active"{% endif %}><a href="{% url 'user_panel_index' %}">General Overview</a></li>
                         <li {% if nav_active == 'posts' %}class="active"{% endif %}><a href="{% url 'user_panel_posts' %}">Posts</a></li>
                         <li {% if nav_active == 'categories' %}class="active"{% endif %}><a href="{% url 'user_panel_categories' %}">Categories</a></li>
-                        <li {% if nav_active == 'tags' %}class="active"{% endif %}><a href="#">Tags</a></li>
+                        <li {% if nav_active == 'tags' %}class="active"{% endif %}><a href="{% url 'user_panel_tags' %}">Tags</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><i class="fa fa-user"></i> {{ user.first_name }} {{ user.last_name }}</a></li>

@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from core.models import Post, Category
-from backend.forms import PostForm, CategoryForm
+from core.models import Post, Category, Tag
+from backend.forms import PostForm, CategoryForm, TagForm
 
 # Create your views here.
 @login_required()
@@ -171,3 +171,80 @@ def delete_category(request, category_id):
     messages.success(request, 'Category deleted.')
 
     return HttpResponseRedirect(reverse('user_panel_categories'))
+
+@login_required()
+def tags(request):
+    context = {}
+    context['nav_active'] = 'tags'
+
+    tags_list = Tag.objects.all()
+
+    paginator = Paginator(list(reversed(tags_list)), 10)
+
+    page = request.GET.get('page')
+
+    try:
+        tags = paginator.page(page)
+    except PageNotAnInteger:
+        tags = paginator.page(1)
+    except EmptyPage:
+        tags = paginator.page(paginator.num_pages)
+
+    context['tags'] = tags
+    return render(request, 'backend/tags.html', context)
+
+@login_required()
+def add_tag(request):
+    context = {}
+    context['nav_active'] = 'tags'
+
+    form = TagForm()
+
+    if request.method == 'POST':
+        print 'hey'
+        form = TagForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tag created.')
+
+            return HttpResponseRedirect(reverse('user_panel_tags'))
+
+    context['form'] = form
+
+    return render(request, 'backend/edit_tag.html', context)
+
+@login_required()
+def edit_tag(request, tag_id):
+    context = {}
+    context['nav_active'] = 'tags'
+
+    tag = Tag.objects.get(pk=tag_id)
+    context['tag'] = tag
+
+    form = TagForm(instance=tag)
+
+    if request.method == 'POST':
+        form = TagForm(request.POST, request.FILES, instance=tag)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tag updated.')
+
+            return HttpResponseRedirect(reverse('user_panel_tags'))
+
+    context['form'] = form
+
+    return render(request, 'backend/edit_tag.html', context)
+
+@login_required()
+def delete_tag(request, tag_id):
+    context = {}
+    context['nav_active'] = 'tags'
+
+    tag = Tag.objects.get(pk=tag_id)
+    tag.delete()
+
+    messages.success(request, 'Tag deleted.')
+
+    return HttpResponseRedirect(reverse('user_panel_tags'))
