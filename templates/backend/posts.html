@@ -11,6 +11,13 @@
                     <li><a href="{% url 'user_panel_index' %}">General Overview</a></li>
                     <li class="active">Posts</li>
                 </ol>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            Post updated successfully!
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <table class="table table-hover">
                     <thead>
                         <tr>

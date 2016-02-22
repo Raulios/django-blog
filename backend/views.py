@@ -1,6 +1,8 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from core.models import Post
 from backend.forms import PostForm
@@ -51,7 +53,9 @@ def edit_post(request, post_id):
 
         if form.is_valid():
             form.save()
-            context['saved'] = True
+            messages.success(request, 'Post updated.')
+
+            return HttpResponseRedirect('/user-panel/posts')
 
     context['form'] = form
 
