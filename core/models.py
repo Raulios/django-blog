@@ -147,6 +147,8 @@ class Post(models.Model):
         if not self.id:
             self.slug = slugify(self.title)
 
+        self.summary = self.body[:150] + '...'
+
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
