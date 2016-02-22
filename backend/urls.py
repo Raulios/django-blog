@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^$', views.index, name='user_panel_index'),
     url(r'^posts/$', views.posts, name='user_panel_posts'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.edit_post, name='user_panel_edit_post'),
+    url(r'^add_post/$', views.add_post, name='user_panel_add_post'),
 ]

@@ -39,6 +39,26 @@ def posts(request):
     return render(request, 'backend/posts.html', context)
 
 @login_required()
+def add_post(request):
+    context = {}
+    context['nav_active'] = 'posts'
+
+    form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Post created.')
+
+            return HttpResponseRedirect('/user-panel/posts')
+
+    context['form'] = form
+
+    return render(request, 'backend/edit_post.html', context)
+
+@login_required()
 def edit_post(request, post_id):
     context = {}
     context['nav_active'] = 'posts'
