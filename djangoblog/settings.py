@@ -38,7 +38,7 @@ LOGIN_REDIRECT_URL = '/user-panel/'
 INSTALLED_APPS = (
     'core.apps.CoreConfig',
     'backend.apps.BackendConfig',
-    'blog.apps.BlogConfig',
+    'blog_frontend.apps.BlogFrontendConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

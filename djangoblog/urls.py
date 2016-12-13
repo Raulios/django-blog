@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^login/', login, name='login'),
     url(r'^logout/', logout_then_login, {'login_url': '/login'}, name='logout'),
 
-    url(r'^$', include('blog.urls')),
+    url(r'^$', include('blog_frontend.urls')),
     url(r'^user-panel/', include('backend.urls')),
 
 ] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

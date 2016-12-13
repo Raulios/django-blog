@@ -14,7 +14,6 @@ def index(request):
     context = {}
     context['nav_active'] = 'index'
 
-    print 'hey'
     return render(request, 'backend/index.html', context)
 
 @login_required()
@@ -47,7 +46,6 @@ def add_post(request):
     form = PostForm()
 
     if request.method == 'POST':
-        print 'hey'
         form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -124,7 +122,6 @@ def add_category(request):
     form = CategoryForm()
 
     if request.method == 'POST':
-        print 'hey'
         form = CategoryForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -201,7 +198,6 @@ def add_tag(request):
     form = TagForm()
 
     if request.method == 'POST':
-        print 'hey'
         form = TagForm(request.POST, request.FILES)
 
         if form.is_valid():
